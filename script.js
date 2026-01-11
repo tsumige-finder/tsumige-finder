@@ -1,32 +1,24 @@
-// CSVパース用ライブラリなしで最低限の処理。カンマはタイトルに入らない前提。
-// steam_reviews.csv はUTF-8 BOMなしでアップロードしてください。
+// PapaParseのCDNはhtmlで読み込んでください。
+// 例: <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
 async function loadCSV(url) {
   const res = await fetch(url);
-  const text = await res.text();
-  return text.split('\n').map(line => line.trim()).filter(line => line).map(line => {
-    // "title","appid",...のヘッダーと区切りを処理
-    // ただし簡易的な処理なので、CSV内にカンマがある場合は要改良
-    const parts = line.match(/("([^"]|"")*"|[^,]*)(,|$)/g).map(s => s.replace(/^"|"$/g, '').replace(/""/g, '"').replace(/,$/, ''));
-    return {
-      title: parts[0],
-      appid: parts[1],
-      release_date: parts[2],
-      review_summary: parts[3],
-      review_count: parts[4],
-      tags: parts[5],
-      image_url: parts[6],
-      store_url: parts[7],
-      status: parts[8]
-    };
+  const csvText = await res.text();
+
+  const parsed = Papa.parse(csvText, {
+    header: true,       // 1行目をヘッダーとして扱う
+    skipEmptyLines: true,
   });
+
+  return parsed.data;
 }
 
 function renderTable(data) {
   const tbody = document.querySelector('#gamesTable tbody');
   tbody.innerHTML = '';
+
   data.forEach(game => {
-    if (game.title === "title") return; // ヘッダー行はスキップ
+    if (!game.title) return;  // 空行やタイトルなしはスキップ
 
     const tr = document.createElement('tr');
 
@@ -38,6 +30,7 @@ function renderTable(data) {
       <td><img src="${game.image_url}" alt="${game.title}" /></td>
       <td><a href="${game.store_url}" target="_blank" rel="noopener noreferrer">Steam</a></td>
     `;
+
     tbody.appendChild(tr);
   });
 }
