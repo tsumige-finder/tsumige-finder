@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tsumige Finder</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  #searchInput { width: 100%; padding: 8px; margin-bottom: 10px; font-size: 16px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+  th { background-color: #f0f0f0; }
+  img { max-width: 120px; }
+  a { color: #0366d6; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<h1>Tsumige Finder</h1>
+<input type="text" id="searchInput" placeholder="ゲームタイトルで検索" />
+
+<table id="gamesTable">
+<thead>
+  <tr>
+    <th>タイトル</th>
+    <th>レビュー数</th>
+    <th>評価</th>
+    <th>タグ</th>
+    <th>画像</th>
+    <th>Steam</th>
+  </tr>
+</thead>
+<tbody>
+  <!-- ゲームリストはJSで生成 -->
+</tbody>
+</table>
+
+<script src="script.js"></script>
+</body>
+</html>
