@@ -3,40 +3,33 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Epic Games StoreやAmazon Lunaで無料配布された積みゲーのSteam評価・タグを一覧化し、ゲーム選びを楽にします。">
 <title>Tsumige Finder</title>
-<style>
-  body { font-family: Arial, sans-serif; padding: 20px; }
-  #searchInput { width: 100%; padding: 8px; margin-bottom: 10px; font-size: 16px; }
-  table { width: 100%; border-collapse: collapse; }
-  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-  th { background-color: #f0f0f0; }
-  img { max-width: 120px; }
-  a { color: #0366d6; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-</style>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.6/css/dataTables.dataTables.css" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <h1>Tsumige Finder</h1>
-<input type="text" id="searchInput" placeholder="ゲームタイトルで検索" />
-
-<table id="gamesTable">
-<thead>
-  <tr>
-    <th>タイトル</th>
-    <th>レビュー数</th>
-    <th>評価</th>
-    <th>タグ</th>
-    <th>画像</th>
-    <th>Steam</th>
-  </tr>
-</thead>
-<tbody>
-  <!-- ゲームリストはJSで生成 -->
-</tbody>
+<p>Epic Games StoreやAmazon Lunaで無料配布された積みゲーのSteam評価・タグを一覧化し、ゲーム選びを楽にします。</p>
+<table id="gamesTable" class="display" style="width:100%">
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>レビュー数</th>
+      <th>評価</th>
+      <th>タグ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- JS で行を追加 -->
+  </tbody>
 </table>
 
-<script src="script.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
