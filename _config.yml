@@ -1,0 +1,5 @@
+title: Tsumige Finder
+url: https://tsumige-finder.github.io
+
+plugins:
+  - jekyll-sitemap
