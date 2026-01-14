@@ -122,7 +122,7 @@ async function main() {
     language: {
       url: '//cdn.datatables.net/plug-ins/2.3.6/i18n/ja.json',
     },
-    order: [[1, 'asc']],
+    order: [],
     initComplete: function () {
       const api = this.api();
 
