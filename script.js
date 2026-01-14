@@ -92,6 +92,21 @@ async function loadData(name, url) {
   return rowData;
 }
 
+function deduplicateGames(data) {
+  const map = new Map();
+
+  data.forEach(game => {
+    if (!game.store_url) return;
+
+    // すでにあればスキップ、なければ追加
+    if (!map.has(game.store_url)) {
+      map.set(game.store_url, game);
+    }
+  });
+
+  return Array.from(map.values());
+}
+
 async function main() {
   const rowData = await loadData("steam_reviews", "https://tsumige-finder.github.io/steam_reviews");
   const results = Papa.parse(rowData, {
@@ -99,8 +114,8 @@ async function main() {
     skipEmptyLines: true,
   });
 
-  const data = results.data;
-  fillTableBody(data);
+  const uniqueData = deduplicateGames(results.data);
+  fillTableBody(uniqueData);
 
   const table = $('#gamesTable').DataTable({
     pageLength: 25,
