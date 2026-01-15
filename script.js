@@ -39,7 +39,9 @@ function fillTableBody(data) {
         </a>
       </td>
       <td style="text-align:right;">${game.review_count}</td>
-      <td>${game.review_summary}</td>
+      <td data-order="${reviewRank[game.review_summary] ?? 99}">
+        ${game.review_summary}
+      </td>
       <td>${createTagElement(game.tags)}</td>
     `;
 
@@ -92,6 +94,17 @@ async function loadData(name, url) {
   return rowData;
 }
 
+const reviewRank = {
+  '圧倒的に好評': 1,
+  '非常に好評': 2,
+  '好評': 3,
+  'やや好評': 4,
+  '賛否両論': 5,
+  'やや不評': 6,
+  '不評': 7,
+  '非常に不評': 8,
+};
+
 function deduplicateGames(data) {
   const map = new Map();
 
@@ -118,11 +131,22 @@ async function main() {
   fillTableBody(uniqueData);
 
   const table = $('#gamesTable').DataTable({
-    pageLength: 25,
+    pageLength: -1,
+    lengthMenu: [[-1], ['すべて表示']],
     language: {
       url: '//cdn.datatables.net/plug-ins/2.3.6/i18n/ja.json',
     },
     order: [],
+    columnDefs: [
+      {
+        targets: 1, // レビュー数
+        orderSequence: ['desc', 'asc', '']
+      },
+      {
+        targets: 2, // 評価列
+        orderable: true
+      }
+    ],
     initComplete: function () {
       const api = this.api();
 

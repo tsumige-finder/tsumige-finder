@@ -1,35 +1,76 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Epic Games StoreやAmazon Lunaで無料配布された積みゲーのSteam評価・タグを一覧化し、ゲーム選びを楽にします。">
-<title>Tsumige Finder</title>
-<link rel="stylesheet" href="https://cdn.datatables.net/2.3.6/css/dataTables.dataTables.css" />
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<h1>Tsumige Finder</h1>
-<p>Epic Games StoreやAmazon Lunaで無料配布されたゲームのSteam評価・タグを一覧化し、次に遊ぶゲーム選びを楽にします。</p>
-<table id="gamesTable" class="display" style="width:100%">
-  <thead>
-    <tr>
-      <th>タイトル</th>
-      <th>レビュー数</th>
-      <th>評価</th>
-      <th>タグ</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- JS で行を追加 -->
-  </tbody>
-</table>
+    <title>
+      Tsumige Finder | 無料配布ゲームをSteamレビュー・タグで一覧検索
+    </title>
+    <meta
+      name="description"
+      content="Epic Games Store・Prime Gamingの無料配布でもらったゲームを一覧化。Steamレビュー・タグで絞り込み、積みゲーの中から本当に面白いゲームを素早く探せます。"
+    />
+    <meta
+      property="og:title"
+      content="Tsumige Finder | 無料配布ゲームをSteamレビュー・タグで一覧検索"
+    />
+    <meta
+      property="og:description"
+      content="Epic・Prime Gamingの無料配布ゲームをSteamレビュー数・評価・タグで一覧検索。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tsumige-finder.github.io/" />
+    <meta property="og:site_name" content="Tsumige Finder" />
 
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-<script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-<script src="script.js"></script>
-</body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/2.3.6/css/dataTables.dataTables.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/searchbuilder/1.7.0/css/searchBuilder.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/3.1.1/css/buttons.dataTables.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Tsumige Finder</h1>
+
+    <p>
+      Epic Games Store・Prime Gamingの無料配布でもらったゲームを、
+      Steamレビュー評価・タグで一覧検索できます。
+    </p>
+
+    <p>積みゲーの中から本当に面白い作品をすぐに見つけられます。</p>
+
+    <ul class="feature-list">
+      <li>🎮 Steamレビュー数・評価で並び替え＆絞り込み</li>
+      <li>🏷️ ジャンル・特徴がわかるSteamタグ一覧表示</li>
+      <li>🔍 無料配布でもらったゲームを横断検索</li>
+    </ul>
+
+    <table id="gamesTable" class="display" style="width: 100%">
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th>レビュー数</th>
+          <th>評価</th>
+          <th>タグ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- JS で行を追加 -->
+      </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
