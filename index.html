@@ -53,24 +53,33 @@
       <li>🔍 無料配布でもらったゲームを横断検索</li>
     </ul>
 
-    <table id="gamesTable" class="display" style="width: 100%">
-      <thead>
-        <tr>
-          <th>タイトル</th>
-          <th>レビュー数</th>
-          <th>評価</th>
-          <th>タグ</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- JS で行を追加 -->
-      </tbody>
-    </table>
+    <div class="layout">
+      <div class="main">
+        <table id="gamesTable" class="display" style="width: 100%">
+          <thead>
+            <tr>
+              <th>タイトル</th>
+              <th>レビュー数</th>
+              <th>評価</th>
+              <th>タグ</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <aside class="tag-panel">
+        <h3>タグで絞り込み</h3>
+        <div id="tagButtons"></div>
+        <button id="clearTags">解除</button>
+      </aside>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script src="https://cdn.datatables.net/2.3.6/js/dataTables.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="script.js"></script>
+    <script src="tag-filter.js"></script>
   </body>
 </html>

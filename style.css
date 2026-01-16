@@ -1,44 +1,100 @@
 body {
-    background-color: #171a21; /* Steamのダーク背景 */
-    color: #c6d4df;            /* 明るいグレー文字 */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
-  }
-  
-  img {
-    max-width: 120px;
-  }
-  
-  a {
-    color: #66c0f4; /* Steamブルー寄り */
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  .tag {
-    display: inline-block;
-    background-color: #2a475e;
-    border-radius: 4px;
-    padding: 2px 6px;
-    margin: 2px 4px 2px 0;
-    font-size: 0.9em;
-    color: #66c0f4;
-  }
-  
-  .ellipsis {
-    cursor: default;
-    font-weight: bold;
-    margin-right: 8px;
-    color: #c6d4df;
-  }
-  
-  .toggle-tags {
-    cursor: pointer;
-    color: #66c0f4;
-    text-decoration: underline;
-    margin-left: 8px;
-  }
-  
+  background-color: #171a21;
+  /* Steamのダーク背景 */
+  color: #c6d4df;
+  /* 明るいグレー文字 */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+img {
+  max-width: 120px;
+}
+
+a {
+  color: #66c0f4;
+  /* Steamブルー寄り */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.tag,
+.tag-btn {
+  display: inline-block;
+  background-color: #2a475e;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin: 2px 4px 2px 0;
+  font-size: 0.9em;
+  color: #66c0f4;
+}
+
+.clickable-tag {
+  cursor: pointer;
+}
+
+.clickable-tag:hover {
+  background-color: #66c0f4;
+  color: #1b2838;
+}
+
+.tag-btn {
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tag.active,
+.tag-btn.active {
+  background-color: #66c0f4;
+  color: #1b2838;
+}
+
+.ellipsis {
+  cursor: default;
+  font-weight: bold;
+  margin-right: 8px;
+  color: #c6d4df;
+}
+
+.toggle-tags {
+  cursor: pointer;
+  color: #66c0f4;
+  text-decoration: underline;
+  margin-left: 8px;
+}
+
+.layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+.tag-panel {
+  width: 220px;
+  position: sticky;
+  top: 16px;
+  align-self: flex-start;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.tag-panel h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+#tagButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

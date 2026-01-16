@@ -1,21 +1,38 @@
 function createTagElement(tags) {
   if (!tags) return '';
-  const tagArr = tags.split(',').map(t => t.trim()).filter(t => t);
-  if (tagArr.length <= 4) {
-    return tagArr.map(t => `<span class="tag">${t}</span>`).join('');
-  }
 
-  const visibleTags = tagArr.slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('');
-  const hiddenTags = tagArr.slice(4).map(t => `<span class="tag">${t}</span>`).join('');
+  const tagArr = tags.split(',').map(t => t.trim()).filter(Boolean);
+
+  const makeTag = t =>
+    `<span class="tag clickable-tag" data-tag="${t}">${t}</span>`;
+
+  if (tagArr.length <= 4) {
+    return tagArr.map(makeTag).join('');
+  }
 
   return `
     <div class="tag-container">
-      ${visibleTags}<span class="ellipsis">... </span>
-      <span class="hidden-tags" style="display:none;">${hiddenTags}</span>
+      ${tagArr.slice(0, 4).map(makeTag).join('')}
+      <span class="ellipsis">... </span>
+      <span class="hidden-tags" style="display:none;">
+        ${tagArr.slice(4).map(makeTag).join('')}
+      </span>
       <a href="#" class="toggle-tags">タグを全表示</a>
     </div>
   `;
 }
+
+
+document.addEventListener("click", e => {
+  const tagEl = e.target.closest(".clickable-tag");
+  if (!tagEl) return;
+
+  e.preventDefault();
+  const tag = tagEl.dataset.tag;
+  if (!tag) return;
+
+  window.toggleTagByName(tag);
+});
 
 function fillTableBody(data) {
   const tbody = document.querySelector('#gamesTable tbody');
@@ -33,10 +50,15 @@ function fillTableBody(data) {
 
     tr.innerHTML = `
       <td>
-        <a href="${game.store_url}" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;">
           ${imgHtml}
-          <span class="title-text">${game.title}</span>
-        </a>
+          <a href="${game.store_url}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="title-link">
+            <span class="title-text">${game.title}</span>
+          </a>
+        </div>
       </td>
       <td style="text-align:right;">${game.review_count}</td>
       <td data-order="${reviewRank[game.review_summary] ?? 99}">
@@ -161,6 +183,9 @@ async function main() {
       });
     }
   });
+
+  // タグ機能へデータを渡す
+  initTagFilter(uniqueData, table);
 
   initTagToggle();
 }
