@@ -102,3 +102,8 @@
     };
 
 })();
+
+/*
+  © 2026 Tsumige Finder
+  This source code is proprietary.
+*/

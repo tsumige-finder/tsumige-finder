@@ -191,3 +191,8 @@ async function main() {
 }
 
 main();
+
+/*
+  © 2026 Tsumige Finder
+  This source code is proprietary.
+*/
